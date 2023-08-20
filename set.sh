@@ -104,21 +104,21 @@ echo -e "$green          Install SSH              $NC"
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 2
 clear
-wget https://raw.githubusercontent.com/Afdhan/new/main/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
+wget https://raw.githubusercontent.com/cdr23/s/main/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
 systemctl stop nginx
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "$green  ISSUE CERT & Install TROJAN GFW       $NC"
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 2
 clear
-wget https://raw.githubusercontent.com/Afdhan/new/main/inss-vt.sh && chmod +x inss-vt.sh && screen -S v2ray ./inss-vt.sh
+wget https://raw.githubusercontent.com/cdr23/s/main/inss-vt.sh && chmod +x inss-vt.sh && screen -S v2ray ./inss-vt.sh
 #Instal Xray
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "$green          Install XRAY              $NC"
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 2
 clear
-wget https://raw.githubusercontent.com/Afdhan/new/main/xray.sh && chmod +x xray.sh && screen -S xray ./xray.sh
+wget https://raw.githubusercontent.com/cdr23/s/main/xray.sh && chmod +x xray.sh && screen -S xray ./xray.sh
 
 
 echo '#!/bin/bash' > /usr/local/bin/reboot_otomatis 
@@ -132,9 +132,9 @@ echo "0 0 * * * root /usr/local/bin/reboot_otomatis" > /etc/cron.d/reboot_otomat
 
 echo "0 */6 * * *  root clear-log && ban" >>/etc/cron.d/banned
 
-wget -O /usr/bin/addssh https://raw.githubusercontent.com/Afdhan/new/main/adds.sh && chmod +x /usr/bin/addssh
-wget -O /usr/bin/addxr https://raw.githubusercontent.com/Afdhan/new/main/addxr.sh && chmod +x /usr/bin/addxr
-wget -O /usr/bin/addtrg https://raw.githubusercontent.com/Afdhan/new/main/trjg.sh && chmod +x /usr/bin/addtrg
+wget -O /usr/bin/addssh https://raw.githubusercontent.com/cdr23/s/main/adds.sh && chmod +x /usr/bin/addssh
+wget -O /usr/bin/addxr https://raw.githubusercontent.com/cdr23/s/main/addxr.sh && chmod +x /usr/bin/addxr
+wget -O /usr/bin/addtrg https://raw.githubusercontent.com/cdr23/s/main/trjg.sh && chmod +x /usr/bin/addtrg
 
 chmod +x /usr/bin/addssh
 chmod +x /usr/bin/addxr
@@ -277,7 +277,7 @@ EOF
 systemctl daemon-reload
 systemctl restart nginx
 systemctl enable autosett
-wget -O /etc/set.sh "https://raw.githubusercontent.com/Afdhan/new/main/set.sh"
+wget -O /etc/set.sh "https://raw.githubusercontent.com/cdr23/s/main/set.sh"
 chmod +x /etc/set.sh
 history -c
 clear
