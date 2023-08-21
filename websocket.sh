@@ -9,21 +9,21 @@ namafolder="websocket-python"
 #System OpenSSH Websocket-SSH Python
 cd
 cd /etc/systemd/system/
-wget -O /etc/systemd/system/ws-openssh.service https://raw.githubusercontent.com/Afdhan/new/main/ws-openssh.service
+wget -O /etc/systemd/system/ws-openssh.service https://raw.githubusercontent.com/cdr23/s/main/ws-openssh.service
 #System Dropbear Websocket-SSH Python
-wget -O /etc/systemd/system/ws-dropbear.service https://raw.githubusercontent.com/Afdhan/new/main/ws-dropbear.service
+wget -O /etc/systemd/system/ws-dropbear.service https://raw.githubusercontent.com/cdr23/s/main/ws-dropbear.service
 #System SSL/TLS Websocket-SSH Python
-wget -O /etc/systemd/system/ws-stunnel.service https://raw.githubusercontent.com/Afdhan/new/main/ws-stunnel.service
+wget -O /etc/systemd/system/ws-stunnel.service https://raw.githubusercontent.com/cdr23/s/main/ws-stunnel.service
 ##System Websocket-OpenVPN Python
-wget -O /etc/systemd/system/ws-ovpn.service https://raw.githubusercontent.com/Afdhan/new/main/ws-ovpn.service
+wget -O /etc/systemd/system/ws-ovpn.service https://raw.githubusercontent.com/cdr23/s/main/ws-ovpn.service
 
 #Install Script Websocket-SSH Python
 cd
 cd /usr/local/bin/
-wget -O /usr/local/bin/ws-openssh https://raw.githubusercontent.com/Afdhan/new/main/ws-openssh
-wget -O /usr/local/bin/ws-dropbear https://raw.githubusercontent.com/Afdhan/new/main/ws-dropbear
-wget -O /usr/local/bin/ws-stunnel https://raw.githubusercontent.com/Afdhan/new/main/ws-stunnel
-wget -O /usr/local/bin/ws-ovpn https://raw.githubusercontent.com/Afdhan/new/main/ws-ovpn
+wget -O /usr/local/bin/ws-openssh https://raw.githubusercontent.com/cdr23/s/main/ws-openssh
+wget -O /usr/local/bin/ws-dropbear https://raw.githubusercontent.com/cdr23/s/main/ws-dropbear
+wget -O /usr/local/bin/ws-stunnel https://raw.githubusercontent.com/cdr23/s/main/ws-stunnel
+wget -O /usr/local/bin/ws-ovpn https://raw.githubusercontent.com/cdr23/s/main/ws-ovpn
 #
 chmod +x /usr/local/bin/ws-openssh
 chmod +x /usr/local/bin/ws-dropbear
