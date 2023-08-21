@@ -113,7 +113,7 @@ echo ""
 echo ""
 echo ""
 echo -e "${red}══════════════════════════════════════════════════════════${NC}"
-echo -e "                    WORLDSSH TEAM " | lolcat
+echo -e "                    PREMIUM SCRIPT " | lolcat
 echo -e "${red}══════════════════════════════════════════════════════════${NC}"p
 echo -e " ${blue}Local TZ               :  Asia/Jakarta ${NC}"
 echo -e " ${blue}Time                   :  $jam WIB ${NC}"
