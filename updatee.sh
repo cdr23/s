@@ -4,12 +4,12 @@ MYIP=$(wget -qO- ipinfo.io/ip);
 clear
 echo "Start Update"
 cd /usr/bin
-wget -O add-xr "https://raw.githubusercontent.com/Afdhan/new/main/add-xr.sh"
-wget -O add-xvless "https://raw.githubusercontent.com/Afdhan/new/main/add-xvless.sh"
-wget -O del-xr "https://raw.githubusercontent.com/Afdhan/new/main/del-xr.sh"
-wget -O del-xvless "https://raw.githubusercontent.com/Afdhan/new/main/del-xvless.sh"
-wget -O xp-xr "https://raw.githubusercontent.com/Afdhan/new/main/xp-xr.sh"
-wget -O xp-xvless "https://raw.githubusercontent.com/Afdhan/new/main/xp-xvless.sh"
+wget -O add-xr "https://raw.githubusercontent.com/cdr23/s/main/add-xr.sh"
+wget -O add-xvless "https://raw.githubusercontent.com/cdr23/s/main/add-xvless.sh"
+wget -O del-xr "https://raw.githubusercontent.com/cdr23/s/main/del-xr.sh"
+wget -O del-xvless "https://raw.githubusercontent.com/cdr23/s/main/del-xvless.sh"
+wget -O xp-xr "https://raw.githubusercontent.com/cdr23/s/main/xp-xr.sh"
+wget -O xp-xvless "https://raw.githubusercontent.com/cdr23/s/main/xp-xvless.sh"
 chmod +x add-xr
 chmod +x add-xvless
 chmod +x del-xr
