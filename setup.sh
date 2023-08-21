@@ -127,6 +127,145 @@ rm -f /root/inss-vt.sh
 rm -f /root/set-br.sh
 rm -f /root/xray.sh
 
+echo '#!/bin/bash' > /usr/local/bin/reboot_otomatis 
+echo 'tanggal=$(date +"%m-%d-%Y")' >> /usr/local/bin/reboot_otomatis 
+echo 'waktu=$(date +"%T")' >> /usr/local/bin/reboot_otomatis
+echo 'clear-log && xp' >> /usr/local/bin/reboot-otomatis
+echo 'echo "Server Berhasil Reboot Pada Tanggal $tanggal Dan Jam $waktu." >> /root/log-reboot.txt' >> /usr/local/bin/reboot_otomatis 
+echo '/sbin/shutdown -r now' >> /usr/local/bin/reboot_otomatis 
+chmod +x /usr/local/bin/reboot_otomatis
+echo "0 0 * * * root /usr/local/bin/reboot_otomatis" > /etc/cron.d/reboot_otomatis
+
+echo "0 */6 * * *  root clear-log && ban" >>/etc/cron.d/banned
+
+wget -O /usr/bin/addssh https://raw.githubusercontent.com/cdr23/s/main/adds.sh && chmod +x /usr/bin/addssh
+wget -O /usr/bin/addxr https://raw.githubusercontent.com/cdr23/s/main/addxr.sh && chmod +x /usr/bin/addxr
+wget -O /usr/bin/addtrg https://raw.githubusercontent.com/cdr23/s/main/trjg.sh && chmod +x /usr/bin/addtrg
+
+chmod +x /usr/bin/addssh
+chmod +x /usr/bin/addxr
+chmod +x /usr/bin/addtrg
+
+#PORT=$((RANDOM + 10000))
+domain=$(cat /etc/v2ray/domain)
+uid=$(cat /etc/trojan/uuid.txt)
+cat>/usr/local/etc/xray/trojanws.json<<EOF
+{
+  "log": {
+    "access": "/var/log/xray/trojanws.log",
+    "error": "/var/log/xray/error.log",
+    "loglevel": "info"
+  },
+  "inbounds": [
+    {
+      "port": 32181,
+      "protocol": "trojan",
+      "settings": {
+        "clients": [
+          {
+            "id": "$uid"
+#tls
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/WorldSSH",
+          "headers": {
+            "Host": ""
+          }
+         },
+        "quicSettings": {},
+        "sockopt": {
+          "mark": 0,
+          "tcpFastOpen": true
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "domain": "$domain"
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "blocked"
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "ip": [
+          "0.0.0.0/8",
+          "10.0.0.0/8",
+          "100.64.0.0/10",
+          "169.254.0.0/16",
+          "172.16.0.0/12",
+          "192.0.0.0/24",
+          "192.0.2.0/24",
+          "192.168.0.0/16",
+          "198.18.0.0/15",
+          "198.51.100.0/24",
+          "203.0.113.0/24",
+          "::1/128",
+          "fc00::/7",
+          "fe80::/10"
+        ],
+        "outboundTag": "blocked"
+      },
+      {
+        "type": "field",
+        "outboundTag": "blocked",
+        "protocol": [
+          "bittorrent"
+        ]
+      }
+    ]
+  }
+}
+EOF
+systemctl start xray@trojanws
+systemctl enable xray@trojanws
+systemctl restart xray@trojanws
+
+cat > /usr/bin/bersih << END
+#!/bin/bash
+echo 1 > /proc/sys/vm/drop_caches
+echo 2 > /proc/sys/vm/drop_caches
+echo 3 > /proc/sys/vm/drop_caches
+swapoff -a
+swapon -a
+ban
+clear-log
+END
+chmod +x /usr/bin/bersih
+
+
+rm -f /root/inss-vt.sh
+rm -f /root/set-br.sh
+rm -f /root/xray.sh
+
+echo "*/5 0 * * * root echo 3 > /proc/sys/vm/drop_caches && swapoff -a && swapon -a && ban" > /etc/cron.d/cache_ban
+systemctl restart cron
+
+cd /usr/bin
+wget -O ban "https://raw.githubusercontent.com/Afdhan/sce/main/kill.sh"
+chmod +x ban
+cd
+
 cat <<EOF> /etc/systemd/system/autosett.service
 [Unit]
 Description=autosetting
