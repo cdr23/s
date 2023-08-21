@@ -25,22 +25,22 @@ mkdir -p /root/backup
 sleep 1
 clear
 echo " Please Wait VPS Data Backup In Progress . . . "
-cp /etc/passwd backup/
-cp /etc/group backup/
-cp /etc/shadow backup/
-cp /etc/gshadow backup/
-cp -r /etc/wireguard backup/wireguard
-cp /etc/ppp/chap-secrets backup/chap-secrets
-cp /etc/ipsec.d/passwd backup/passwd1
-cp /etc/shadowsocks-libev/akun.conf backup/ss.conf
-cp -r /var/lib/premium-script/ backup/premium-script
-cp -r /home/sstp backup/sstp
-cp -r /etc/v2ray backup/v2ray
-cp -r /usr/local/etc/xray /backup/xray
-cp -r /etc/trojan backup/trojan
-cp /etc/nginx/conf.d/vps.conf backup/vps.conf
-cp -r /usr/local/shadowsocksr/ backup/shadowsocksr
-cp -r /home/vps/public_html backup/public_html
+cp /etc/passwd backup/dev/null 2>&1
+cp /etc/group backup/dev/null 2>&1
+cp /etc/shadow backup/dev/null 2>&1
+cp /etc/gshadow backup/dev/null 2>&1
+cp -r /etc/wireguard backup/wireguard/dev/null 2>&1
+cp /etc/ppp/chap-secrets backup/chap-secrets/dev/null 2>&1
+cp /etc/ipsec.d/passwd backup/passwd1/dev/null 2>&1
+cp /etc/shadowsocks-libev/akun.conf backup/ss.conf/dev/null 2>&1
+cp -r /var/lib/premium-script/ backup/premium-script/dev/null 2>&1
+cp -r /home/sstp backup/sstp/dev/null 2>&1
+cp -r /etc/v2ray backup/v2ray/dev/null 2>&1
+cp -r /usr/local/etc/xray /backup/xray/dev/null 2>&1
+cp -r /etc/trojan backup/trojan/dev/null 2>&1
+cp /etc/nginx/conf.d/vps.conf backup/vps.conf/dev/null 2>&1
+cp -r /usr/local/shadowsocksr/ backup/shadowsocksr/dev/null 2>&1
+cp -r /home/vps/public_html backup/public_html/dev/null 2>&1
 cd /root
 zip -rP $InputPass $IP-$date.zip backup > /dev/null 2>&1
 rclone copy /root/$IP-$date.zip dr:backup/
