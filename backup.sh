@@ -1,28 +1,29 @@
 #!/bin/bash
-RED='\e[1;31m'
-GREEN='\e[0;32m'
-BLUE='\e[0;34m'
+red='\e[1;31m'
+green='\e[0;32m'
+purple='\e[0;35m'
+orange='\e[0;33m'
 NC='\e[0m'
-MYIP=$(wget -qO- ipinfo.io/ip);
-
 clear
-source /var/lib/premium-script/ipvps.conf
-if [[ "$IPS" = "" ]]; then
-domain=$(cat /etc/v2ray/domain)
-else
-domain=$IPS
-fi
-IP=$(wget -qO- ipinfo.io/ip);
+IP=$(wget -qO- icanhazip.com);
 date=$(date +"%Y-%m-%d")
 clear
-echo " Enter Your Email To Receive Message"
-read -rp " Email: " -e email
+echo " VPS Data Backup By CandraVpnz "
 sleep 1
-echo Membuat Directory
-mkdir /root/backup
-sleep 1
-echo Start Backup
+echo ""
+echo -e "[ ${green}INFO${NC} ] Please Insert Password To Secure Backup Data ."
+echo ""
+read -rp "Enter password : " -e InputPass
 clear
+sleep 1
+if [[ -z $InputPass ]]; then
+exit 0
+fi
+echo -e "[ ${green}INFO${NC} ] Processing . . . "
+mkdir -p /root/backup
+sleep 1
+clear
+echo " Please Wait VPS Data Backup In Progress . . . "
 cp /etc/passwd backup/
 cp /etc/group backup/
 cp /etc/shadow backup/
@@ -40,25 +41,24 @@ cp /etc/nginx/conf.d/vps.conf backup/vps.conf
 cp -r /usr/local/shadowsocksr/ backup/shadowsocksr
 cp -r /home/vps/public_html backup/public_html
 cd /root
-zip -r $IP-$date.zip backup > /dev/null 2>&1
+zip -rP $InputPass $IP-$date.zip backup > /dev/null 2>&1
 rclone copy /root/$IP-$date.zip dr:backup/
 url=$(rclone link dr:backup/$IP-$date.zip)
 id=(`echo $url | grep '^https' | cut -d'=' -f2`)
 link="https://drive.google.com/u/4/uc?id=${id}&export=download"
-echo -e "The following is a link to your vps data backup file.
-
-===================
-Your VPS IP $IP
-Domain=${domain}
-===================
-
-$link
-
-If you want to restore data, please enter the link above.
-
-Thank You For Using Our Services.
-@Copiright 2021 By Endka" | mail -s "Backup Data" $email
+clear
+echo -e "\033[1;37mVPS Data Backup By CandraVpnz\033[0m
+\033[1;37mTelegram : https://t.me/CandraVpnz / @CandraVpnz\033[0m"
+echo ""
+echo "Please Copy Link Below & Save In Notepad"
+echo ""
+echo -e "Your VPS IP ( \033[1;37m$IP\033[0m )"
+echo ""
+echo -e "Your VPS Data Backup Password : \033[1;37m$InputPass\033[0m"
+echo ""
+echo -e "\033[1;37m$link\033[0m"
+echo ""
+echo "If you want to restore data, please enter the link above"
 rm -rf /root/backup
 rm -r /root/$IP-$date.zip
-echo "Done"
-echo "Please Check Your Email"
+echo ""
